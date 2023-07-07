@@ -1,0 +1,22 @@
+In[1]:=
+f1[x_,y_] := σ * (y - x)
+f2[x_,y_] := ρ * x - y - x * z  
+f3[x_,y_] := - β * z + x * y
+In[4]:= deq1 = x' == f1[x,y]
+deq2 = y' == f2[x,y]
+deq3 = z' == f3[x,y]
+Out[4]= x^′==(-x+y) σ
+Out[5]= y^′==-y-x z+x ρ
+Out[6]= z^′==x y-z β
+In[46]:= "Para que el sistema sea conservativo, igualamos la divergencia en las tres ecuaciones a cero."
+vectorfield = {deq1[[2]],deq2[[2]],deq3[[2]]}
+dissipativecondition = Div[vectorfield, {x, y, z}] ==0
+Out[46]= Para que el sistema sea conservativo, igualamos la divergencia en las tres ecuaciones a cero.
+Out[47]= {(-x+y) σ,-y-x z+x ρ,x y-z β}
+Out[48]= -1-β-σ==0
+In[51]:= dissipativecondition = Reduce[dissipativecondition, {σ, β}]
+Out[51]= β==-1-σ
+In[53]:= Plot[dissipativecondition[[2]], {σ, -1, 1}, AxesLabel->{"σ","β"}]
+Out[53]= 
+In[54]:= "Para valores de σ y β sobre la recta, el sistema es conservativo. Para valores de β bajo la recta, el sistema es disipativo, y por encima de la misma, el sistema expande su volumen en el espacio de fases, al menos localmente."
+Out[54]= Para valores de σ y β sobre la recta, el sistema es conservativo. Para valores de β bajo la recta, el sistema es disipativo, y por encima de la misma, el sistema expande su volumen en el espacio de fases, al menos localmente.
